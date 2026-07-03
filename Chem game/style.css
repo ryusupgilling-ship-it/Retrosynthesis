@@ -1,0 +1,435 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7f2;
+  color: #24382f;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  background: #3d7c59;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2f6246;
+}
+
+.start-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 56px;
+}
+
+#start-button {
+  font-size: 28px;
+  padding: 16px 48px;
+}
+
+.chapter-screen,
+.level-screen {
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+
+.chapter-screen h2,
+.level-screen h2 {
+  margin: 0;
+  font-size: 42px;
+}
+
+.chapter-grid {
+  width: min(900px, 90vw);
+  min-height: 260px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.chapter-button {
+  min-height: 120px;
+  font-size: 32px;
+}
+
+.level-grid {
+  width: min(900px, 90vw);
+  height: min(600px, 70vh);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 20px;
+}
+
+.level-button {
+  font-size: 36px;
+}
+
+#back-to-title-button,
+#back-to-chapters-button {
+  position: fixed;
+  left: 24px;
+  top: 24px;
+  font-size: 18px;
+  padding: 12px 20px;
+  background: #725f4c;
+}
+
+#back-to-levels-button {
+  position: fixed;
+  left: 24px;
+  top: 12px;
+  font-size: 18px;
+  padding: 12px 20px;
+  background: #725f4c;
+}
+
+.game-screen {
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 18px 32px 14px;
+  text-align: center;
+}
+
+#level-title {
+  margin: 0;
+  font-size: 40px;
+}
+
+.game-layout {
+  width: min(1200px, 92vw);
+  height: calc(100vh - 100px);
+  max-height: 540px;
+  min-height: 390px;
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(220px, 1fr);
+  gap: 22px;
+}
+
+.molecule-area {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+  gap: 18px;
+}
+
+.target-panel,
+.reaction-box,
+.side-panel {
+  border: 3px solid #24382f;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.target-panel {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.target-display {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 8px 18px;
+  color: #725f4c;
+  font-size: 18px;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.target-label {
+  flex: 0 0 auto;
+  font-weight: bold;
+}
+
+#target-chemical {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.reaction-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+#main-chemical {
+  margin: 0;
+  color: #24382f;
+  font-size: 40px;
+}
+
+.side-panel {
+  min-width: 220px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 16px;
+  padding: 16px;
+}
+
+.reagent-tray {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.reagent {
+  aspect-ratio: 1;
+  width: 100%;
+  min-height: 0;
+  padding: 8px;
+  font-size: 20px;
+  cursor: grab;
+}
+
+.reagent:active {
+  cursor: grabbing;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.action-buttons button {
+  min-height: 54px;
+  padding: 8px;
+  background: #725f4c;
+  font-size: 18px;
+}
+
+.action-buttons button:hover,
+.reagent:hover {
+  filter: brightness(0.9);
+}
+
+.clear-popup {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(36, 56, 47, 0.35);
+  z-index: 10;
+}
+
+.clear-popup.active {
+  display: flex;
+}
+
+.clear-card {
+  position: relative;
+  width: min(560px, 82vw);
+  height: min(320px, 48vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #24382f;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.clear-card h3 {
+  margin: 0;
+  color: #24382f;
+  font-size: 56px;
+}
+
+#next-stage-button {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  padding: 12px 20px;
+  background: #725f4c;
+  font-size: 18px;
+}
+
+.molecule-svg {
+  width: min(780px, 92%);
+  height: 290px;
+}
+
+.target-molecule-svg {
+  width: min(460px, 76%);
+  height: 74px;
+}
+
+.target-small .target-molecule-svg {
+  width: 220px;
+}
+
+.target-medium .target-molecule-svg {
+  width: 320px;
+}
+
+.target-large .target-molecule-svg {
+  width: 450px;
+}
+
+.bond {
+  stroke: #24382f;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+
+
+.atom {
+  fill: #24382f;
+  font-family: Arial, sans-serif;
+  font-size: 32px;
+}
+
+.hydrogen {
+  fill: #B8B8B8;
+}
+
+.bromine {
+  fill: #A52A2A;
+}
+
+.chlorine {
+  fill: #32CD32;
+}
+
+.iodine {
+  fill: #9400D3;
+}
+
+.oxygen {
+  fill: #d32f2f;
+}
+
+.sub {
+  font-size: 18px;
+  baseline-shift: sub;
+}
+
+@media (max-width: 800px) {
+  h1 {
+    font-size: 42px;
+  }
+
+  .chapter-grid,
+  .level-grid {
+    width: min(420px, 90vw);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .game-screen {
+    justify-content: flex-start;
+    padding: 80px 18px 24px;
+  }
+
+  .game-layout {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .molecule-area {
+    min-height: 560px;
+  }
+
+  .side-panel {
+    min-height: 260px;
+  }
+
+  .reagent-tray {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+#conditionBar{
+    position:absolute;
+    bottom:10px;
+    left:30px;
+
+    display:flex;
+    gap:12px;
+
+    z-index:100;
+}
+
+.condition-button{
+    width:120px;
+    height:70px;
+
+    font-size:20px;
+    font-weight:bold;
+
+    border:none;
+    border-radius:12px;
+
+    background:#c33;
+    color:white;
+    cursor:pointer;
+
+    transition:background 0.2s ease;
+}
+
+.condition-button:hover{
+    background:#a22;
+}
+
+.condition-button.active{
+    background:#800;
+}
+
+.condition-button.active:hover{
+    background:#600;
+}
+
+#game-screen{
+    position: relative;
+}
+
+#game-screen::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:rgba(255,120,0,0);
+    pointer-events:none;
+    transition: background 0.2s ease;
+}
+
+#game-screen.heat-mode::after{
+    background:rgba(255,120,0,0.1);
+    transition: background 1s ease;
+}

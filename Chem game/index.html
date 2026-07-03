@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orgo Chemistry</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="start-screen">
+    <h1>Retrosynthesis</h1>
+    <button id="start-button">Start</button>
+  </main>
+
+  <main class="chapter-screen" id="chapter-screen">
+    <h2>Select Chapter</h2>
+
+    <div class="chapter-grid" id="chapter-grid"></div>
+
+    <button id="back-to-title-button">Back to Title</button>
+  </main>
+
+  <main class="level-screen" id="level-screen">
+    <h2 id="chapter-title">Chapter 1</h2>
+
+    <div class="level-grid" id="level-grid"></div>
+
+    <button id="back-to-chapters-button">Back to Chapters</button>
+  </main>
+
+  <main class="game-screen" id="game-screen">
+    <button id="back-to-levels-button">Back to Levels</button>
+
+    <h2 id="level-title">Level 1</h2>
+
+    <section class="game-layout">
+      <div class="molecule-area">
+        <section class="target-panel">
+          <div class="target-display">
+            <span class="target-label">Target:</span>
+            <span id="target-chemical">Target Chemical</span>
+          </div>
+        </section>
+
+        <section class="reaction-box" id="reaction-box">
+          <div id="main-chemical">Starting Chemical</div>
+        </section>
+      </div>
+
+      <aside class="side-panel">
+        <div class="reagent-tray" id="reagent-tray"></div>
+
+        <div class="action-buttons">
+          <button id="undo-button">Undo</button>
+          <button id="reset-button">Reset</button>
+        <button id="confirm-button">Confirm</button>
+        </div>
+        <div id="conditionBar"></div>
+      </aside>
+    </section>
+
+    <div class="clear-popup" id="clear-popup">
+      <div class="clear-card">
+        <h3>Clear</h3>
+        <button id="next-stage-button">Next Stage</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="levels.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
